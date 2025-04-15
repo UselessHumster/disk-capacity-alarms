@@ -1,7 +1,8 @@
 import os
+import requests
 import subprocess as sb
-from src.config import BOT_TOKEN, CHAT_ID, DISKS_TO_CHECK
-from src. install import install
+from src.config import BOT_TOKEN, CHAT_ID, DISKS_TO_CHECK, HOSTNAME
+from src.install import install
 
 IS_CONFIG = os.path.isfile(f'.env')
 
@@ -20,14 +21,16 @@ def get_info():
 def gen_text(disk_info):
     return f'{disk_info["name"]} free space: {disk_info["avail"]}; used: {disk_info["use%"]}'
 
-def send(disk_info):
-    link = f'"https://api.telegram.org/{BOT_TOKEN}/sendMessage?parse_mode-HTML&chat_id={CHAT_ID}&text={gen_text(disk_info)}"'
-    curl = f'curl -s -X POST {link}'
-    sb.check_call(curl, shell=True)
+def send(text):
+    link = f'https://api.telegram.org/{BOT_TOKEN}/sendMessage?chat_id={CHAT_ID}&text={text}'
+    response = requests.get(link)
+    print( response.json())
+
 
 
 def main():
     output = get_info()
+    data_to_send = f'Проверка хранилища на {HOSTNAME}\n\n'
     for disk in output:
         print(f'{disk=}')
         disk = [i for i in disk.split(' ') if i]
@@ -36,7 +39,8 @@ def main():
                      'used': disk[2],
                      'avail': disk[3],
                      'use%': disk[4]}
-        send(disk_info)
+        data_to_send += f'{gen_text(disk_info)}\n'
+    send(data_to_send)
 
 
 
