@@ -1,6 +1,9 @@
+import os
 import subprocess as sb
-from src.config import BOT_TOKEN, CHAT_ID, DISKS_TO_CHECK, IS_CONFIG
+from src.config import BOT_TOKEN, CHAT_ID, DISKS_TO_CHECK
 from src. install import install
+
+IS_CONFIG = os.path.isfile(f'.env')
 
 def get_info():
     data = []
