@@ -21,7 +21,7 @@ def gen_text(disk_info):
     return f'{disk_info["name"]} free space: {disk_info["avail"]}; used: {disk_info["use%"]}'
 
 def send(disk_info):
-    link = f'"https://api.telegram.org/{BOT_API}/sendMessage?parse_mode-HTML&chat_id={CHAT_ID}&text={gen_text(disk_info)}"'
+    link = f'"https://api.telegram.org/{BOT_TOKEN}/sendMessage?parse_mode-HTML&chat_id={CHAT_ID}&text={gen_text(disk_info)}"'
     curl = f'curl -s -X POST {link}'
     sb.check_call(curl, shell=True)
 
