@@ -12,7 +12,9 @@
 Установка:
 
 ```
+git clone https://github.com/UselessHumster/Disk-capacity-alarms.git
 curl -LsSf https://astral.sh/uv/install.sh | sh
+cd Disk-capacity-alarms
 uv sync
 uv run main.py
 ```
