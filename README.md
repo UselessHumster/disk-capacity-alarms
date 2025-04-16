@@ -30,5 +30,12 @@ uv run main.py
 - Поменять время если требуется (по умолчанию каждый день в 8 утра)
 
 ```
-echo "0 8 * * * uv run /scripts/disk-capacity-alarms/main.py >> /var/log/disk-capacity-py.log" >> /var/spool/cron/crontabs/root
+echo "0 8 * * * uv run /scripts/disk-capacity-alarms/main.py > /var/log/disk-capacity-py.log > 2>&1" >> /var/spool/cron/crontabs/root
+```
+
+
+или вручную
+```
+EDITOR=nano crontab -e
+0 8 * * * uv run /scripts/disk-capacity-alarms/main.py > /var/log/disk-capacity-py.log > 2>&1
 ```
