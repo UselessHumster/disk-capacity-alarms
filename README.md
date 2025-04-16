@@ -10,9 +10,9 @@
 Установка:
 
 ```
-git clone https://github.com/UselessHumster/Disk-capacity-alarms.git
+git clone https://github.com/UselessHumster/disk-capacity-alarms.git
 curl -LsSf https://astral.sh/uv/install.sh | sh
-cd Disk-capacity-alarms
+cd disk-capacity-alarms
 uv run main.py
 ```
 При первом запуске происходит настройка бота
@@ -30,5 +30,5 @@ uv run main.py
 - Поменять время если требуется (по умолчанию каждый день в 8 утра)
 
 ```
-echo "0 8 * * * uv run /scripts/Disk-capacity-alarms/main.py >> /var/log/disk-capacity-py.log" >> /var/spool/cron/crontabs/root
+echo "0 8 * * * uv run /scripts/disk-capacity-alarms/main.py >> /var/log/disk-capacity-py.log" >> /var/spool/cron/crontabs/root
 ```
